@@ -57,16 +57,22 @@ function generatePlaylist(guardians, songs)
                         
                         //UI Output
                         let playlist = document.querySelector('#playlists');
-                        let playlistCard = document.createElement('p');
+                        let playlistCard = document.createElement('ul');
                         playlistCard.className = "playlist";
-                        
+                        playlistCard.innerHTML = `<h2>${artist}</h2>`;            
                         // -> Displaying the information as is on the solution.jpg
                         //->The logic comes here
-                        playlistCard.textContent = "H";
+                        rockSongs.forEach(song => 
+                        {
+                            const li = document.createElement('li');
+                            li.classList = "song";
+                            li.textContent = `${song.title} by ${song.artist}`;
+                            playlistCard.append(li);    
+                        });        
                         
                         
                         playlist.appendChild(playlistCard);
- 
+                        
                         
                     }
                 else if(genre === "Pop")
