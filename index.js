@@ -54,26 +54,36 @@ function generatePlaylist(guardians, songs)
                         .map(song => song.genre === "Rock" ? { title: song.title, artist: song.artist } : null)
                         .filter(Boolean); 
                         console.log(artist,rockSongs);
+                        
+                        //UI Output
+                        let playlist = document.querySelector('#playlists');
+                        let playlistCard = document.createElement('p');
+                        playlistCard.className = "playlist";
+                        
+                        // -> Displaying the information as is on the solution.jpg
+                        //->The logic comes here
+                        playlistCard.textContent = "H";
+                        
+                        
+                        playlist.appendChild(playlistCard);
+ 
+                        
                     }
                 else if(genre === "Pop")
                     {
                         const popSongs = songs
                         .map(song => song.genre === "Pop" ? { title: song.title, artist: song.artist } : null)
                         .filter(Boolean); 
-                        console.log(popSongs);
+                        console.log(artist,popSongs);
                     }
                 else
                 {
                     let genreRB = songs.filter(m => m.genre === "R&B").map(m => m.title);
-                    console.log(genreRB);
+                    console.log(artist,genreRB);
                 }
-
-
-                
-                console.log(`${artist} prefers ${genre}`);
             }
 
-        //Inside each iteration within the loop map the playlist
+        
             //DOM create elements and update data
     
 }
