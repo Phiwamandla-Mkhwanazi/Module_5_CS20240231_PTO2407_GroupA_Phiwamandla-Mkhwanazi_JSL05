@@ -11,21 +11,71 @@ const songs = [
     { title: "Come and Get Your Love", artist: "Redbone", genre: "Rock" },
     { title: "I'm Not in Love", artist: "10cc", genre: "Pop" },
     { title: "Fooled Around and Fell in Love", artist: "Elvin Bishop", genre: "Rock" },
+    
     // Feel free to add even more songs
+    //->Adding five more songs below
+
+
 ];
 
 
 // Object containing each Guardian's preferred genre
-const guardians = {
+const guardians = 
+{
     "Star-Lord": "Rock",
     "Gamora": "Pop",
-    // Add preferences for Drax, Rocket, and Groot
+    
+    //-> Add preferences for Drax, Rocket, and Groot
+    "Drax": "R&B",/*With relation to the solution.png*/
+    "Rocket":"Rock", /*With relation to the solution.png*/
+    "Groot": "Pop", /*With relation to the solution.png*/
 };
 
 // Function to generate playlist based on preferred genre
-function generatePlaylist(guardians, songs) {
+function generatePlaylist(guardians, songs) 
+{
     // Use the map() function to create playlists for each Guardian
     // Your code here
+    
+    
+   
+    
+    
+
+    //->Algoirthm Structure
+    //Loop Through each guardian and get their genre
+
+        for(const artist in guardians)
+            {
+                const genre = guardians[artist];
+                if(genre === "Rock")
+                    {
+                        const rockSongs = songs
+                        .map(song => song.genre === "Rock" ? { title: song.title, artist: song.artist } : null)
+                        .filter(Boolean); 
+                        console.log(artist,rockSongs);
+                    }
+                else if(genre === "Pop")
+                    {
+                        const popSongs = songs
+                        .map(song => song.genre === "Pop" ? { title: song.title, artist: song.artist } : null)
+                        .filter(Boolean); 
+                        console.log(popSongs);
+                    }
+                else
+                {
+                    let genreRB = songs.filter(m => m.genre === "R&B").map(m => m.title);
+                    console.log(genreRB);
+                }
+
+
+                
+                console.log(`${artist} prefers ${genre}`);
+            }
+
+        //Inside each iteration within the loop map the playlist
+            //DOM create elements and update data
+    
 }
 
 // Call generatePlaylist and display the playlists for each Guardian
