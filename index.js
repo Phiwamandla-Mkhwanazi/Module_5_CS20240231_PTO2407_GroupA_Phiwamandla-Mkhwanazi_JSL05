@@ -31,7 +31,8 @@ const guardians =
     "Groot": "Pop", /*With relation to the solution.png*/
 };
 
-function UI_Display(guardian, songs)
+/*---Created a UI function to handle */
+function UI_Display(guardian, song)
 {
     //UI Output
     let playlist = document.querySelector('#playlists'); //Playlist main container
@@ -40,11 +41,10 @@ function UI_Display(guardian, songs)
     playlistCard.innerHTML = `<h2>${guardian}'s Playlist</h2>`; //Guardians name and playlist.                
     // -> Displaying the information as is on the solution.jpg
     //->The logic comes here
-    rockSongs.forEach(song => 
+    song.forEach(song => 
     {
         const li = document.createElement('li'); //Each song
         li.classList = "song"; //Class for each song
-
         const titleSpan = document.createElement('span'); //Song title
         titleSpan.classList.add("song-title"); //Add song title styling
         titleSpan.textContent = song.title; //write song title
@@ -61,8 +61,6 @@ function generatePlaylist(guardians, songs)
     // Use the map() function to create playlists for each Guardian
     // Your code here
 
-    //->Algoirthm Structure
-    //Loop Through each guardian and get their genre
 
     for(const guardian in guardians)
     {
@@ -73,7 +71,7 @@ function generatePlaylist(guardians, songs)
                 {
                     const rockSongs = songs.map(song => song.genre === "Rock" ? { title: song.title, artist: song.artist } : null).filter(Boolean); 
                     console.log(guardian,rockSongs);
-                    //UI_Display(guardian, songs);    
+                    UI_Display(guardian, rockSongs);    
                 }
                 break;
                  
