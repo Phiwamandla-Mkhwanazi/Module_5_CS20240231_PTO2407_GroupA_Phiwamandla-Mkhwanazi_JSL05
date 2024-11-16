@@ -14,8 +14,11 @@ const songs = [
     
     // Feel free to add even more songs
     //->Adding five more songs below
-
-
+    { title: "Rolling in the Deep", artist: "Adele", genre: "Pop" },
+    { title: "Smooth Operator", artist: "Sade", genre: "Pop" },
+    { title: "Reach It", artist: "Zonke", genre: "R&B" },
+    { title: "Imagine", artist: "John Lennon", genre: "Rock" },
+    { title: "Pearls", artist: "Sade", genre: "R&B" }
 ];
 
 
@@ -79,13 +82,15 @@ function generatePlaylist(guardians, songs)
                 {
                     const popSongs = songs.map(song => song.genre === "Pop" ? { title: song.title, artist: song.artist } : null).filter(Boolean); 
                     console.log(guardian,popSongs);
+                    UI_Display(guardian, popSongs); 
                 }
                 break;
                 
                 case "R&B" :
                 {
-                    let genreRB = songs.filter(m => m.genre === "R&B").map(m => m.title);
-                    console.log(guardian,genreRB);
+                    const rnbSongs = songs.map(song => song.genre === "R&B" ? { title: song.title, artist: song.artist } : null).filter(Boolean); 
+                    console.log(guardian, rnbSongs);
+                    UI_Display(guardian, rnbSongs);
                 }
                 break;
 
