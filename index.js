@@ -31,6 +31,30 @@ const guardians =
     "Groot": "Pop", /*With relation to the solution.png*/
 };
 
+function UI_Display(guardian, songs)
+{
+    //UI Output
+    let playlist = document.querySelector('#playlists'); //Playlist main container
+    let playlistCard = document.createElement('ul'); //Playlist Area for each guardian
+    playlistCard.className = "playlist";    //Add playlist class to the playlistCard - attaching css styling within our ul element.
+    playlistCard.innerHTML = `<h2>${guardian}'s Playlist</h2>`; //Guardians name and playlist.                
+    // -> Displaying the information as is on the solution.jpg
+    //->The logic comes here
+    rockSongs.forEach(song => 
+    {
+        const li = document.createElement('li'); //Each song
+        li.classList = "song"; //Class for each song
+
+        const titleSpan = document.createElement('span'); //Song title
+        titleSpan.classList.add("song-title"); //Add song title styling
+        titleSpan.textContent = song.title; //write song title
+        li.appendChild(titleSpan); //add to li(parent) element
+        li.append(` by ${song.artist}`); //then proceed to add also the text "by song.artist" to parent li element
+        playlistCard.append(li); //then add the li element to its parent element ul then thus creating the list     
+    });        
+
+playlist.appendChild(playlistCard); //then add the ul element to its parent/root element div. 
+}
 
 function generatePlaylist(guardians, songs) 
 {
@@ -40,60 +64,40 @@ function generatePlaylist(guardians, songs)
     //->Algoirthm Structure
     //Loop Through each guardian and get their genre
 
-        for(const artist in guardians)
+    for(const guardian in guardians)
+    {
+        const genre = guardians[guardian];
+            switch(genre)
             {
-                const genre = guardians[artist];
-                if(genre === "Rock")
-                    {
-                        const rockSongs = songs
-                        .map(song => song.genre === "Rock" ? { title: song.title, artist: song.artist } : null)
-                        .filter(Boolean); 
-                        console.log(artist,rockSongs);
-                        
-                        //UI Output
-                        let playlist = document.querySelector('#playlists'); //Playlist main container
-                        let playlistCard = document.createElement('ul'); //Playlist Area for each guardian
-                        playlistCard.className = "playlist";    //Add playlist class to the playlistCard - attaching css styling within our ul element.
-                        playlistCard.innerHTML = `<h2>${artist}'s Playlist</h2>`; //Guardians name and playlist.                
-                        // -> Displaying the information as is on the solution.jpg
-                        //->The logic comes here
-                        rockSongs.forEach(song => 
-                        {
-                            const li = document.createElement('li'); //Each song
-                            li.classList = "song"; //Class for each song
-
-                            const titleSpan = document.createElement('span'); //Song title
-                            titleSpan.classList.add("song-title"); //Add song title styling
-                            titleSpan.textContent = song.title; //write song title
-                            li.appendChild(titleSpan); //add to li(parent) element
-                            li.append(` by ${song.artist}`); //then proceed to add also the text "by song.artist" to parent li element
-                            playlistCard.append(li); //then add the li element to its parent element ul then thus creating the list     
-                        });        
-                        
-                        playlist.appendChild(playlistCard); //then add the ul element to its parent/root element div. 
-                        
-                        
-                    }
-                else if(genre === "Pop")
-                    {
-                        const popSongs = songs
-                        .map(song => song.genre === "Pop" ? { title: song.title, artist: song.artist } : null)
-                        .filter(Boolean); 
-                        console.log(artist,popSongs);
-                    }
-                else
+                case "Rock" : 
+                {
+                    const rockSongs = songs.map(song => song.genre === "Rock" ? { title: song.title, artist: song.artist } : null).filter(Boolean); 
+                    console.log(guardian,rockSongs);
+                    //UI_Display(guardian, songs);    
+                }
+                break;
+                 
+                case "Pop" :  
+                {
+                    const popSongs = songs.map(song => song.genre === "Pop" ? { title: song.title, artist: song.artist } : null).filter(Boolean); 
+                    console.log(guardian,popSongs);
+                }
+                break;
+                
+                case "R&B" :
                 {
                     let genreRB = songs.filter(m => m.genre === "R&B").map(m => m.title);
-                    console.log(artist,genreRB);
+                    console.log(guardian,genreRB);
+                }
+                break;
+
+                default : 
+                {
+
                 }
             }
-
-        
-            //DOM create elements and update data
-    
+    }
 }
 
 // Call generatePlaylist and display the playlists for each Guardian
 generatePlaylist(guardians, songs);
-
-
