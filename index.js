@@ -34,6 +34,13 @@ const guardians =
     "Groot": "Pop", /*With relation to the solution.png*/
 };
 
+/*Created a function to handle mapping and filtering the array of songs. Also returns the array of songs*/
+function getSongsByGenre(genre) 
+{
+     //-> Using Map() method to extract only the songs within that specified genre and apply filter method to remove all falsy values from the array.
+     return songs.map(song => song.genre === genre ? { title: song.title, artist: song.artist } : null).filter(Boolean); 
+}
+
 /*---Created a UI function to handle DOM */
 function UI_Display(guardian, song)
 {
@@ -73,26 +80,19 @@ function generatePlaylist(guardians, songs)
             {
                 case "Rock" : 
                 {
-                    //-> Using Map() method to extract only the songs within that specified genre and apply filter method to remove all falsy values from the array.
-                    const rockSongs = songs.map(song => song.genre === "Rock" ? { title: song.title, artist: song.artist } : null).filter(Boolean); 
-                    console.log(guardian,rockSongs); //->Log to console for debugging purposes
-                    UI_Display(guardian, rockSongs); //->Get guardian name and mapped array songs to print to dom.
+                    UI_Display(guardian, getSongsByGenre(genre)); //->Get guardian name and mapped array songs to print to dom.
                 }
                 break;
                  
                 case "Pop" :  
                 {
-                    const popSongs = songs.map(song => song.genre === "Pop" ? { title: song.title, artist: song.artist } : null).filter(Boolean); 
-                    console.log(guardian,popSongs);
-                    UI_Display(guardian, popSongs); 
+                    UI_Display(guardian, getSongsByGenre(genre)); //->Get guardian name and mapped array songs to print to dom.; 
                 }
                 break;
                 
                 case "R&B" :
                 {
-                    const rnbSongs = songs.map(song => song.genre === "R&B" ? { title: song.title, artist: song.artist } : null).filter(Boolean); 
-                    console.log(guardian, rnbSongs);
-                    UI_Display(guardian, rnbSongs);
+                    UI_Display(guardian, getSongsByGenre(genre)); //->Get guardian name and mapped array songs to print to dom.
                 }
                 break;
 
