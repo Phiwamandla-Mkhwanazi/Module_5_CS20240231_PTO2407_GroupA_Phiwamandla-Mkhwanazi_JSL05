@@ -25,12 +25,14 @@ h1 {
 
 .song {
     margin: 10px 0; /* Increased margin */
+    list-style: none;
 }
 
 .song-title {
     font-weight: bold;
     color: #FFD700; /* Gold color for song titles */
     text-decoration: underline; /* Underline effect for song titles */
+    
 }
 
 .song-title:hover {

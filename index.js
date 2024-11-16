@@ -31,16 +31,11 @@ const guardians =
     "Groot": "Pop", /*With relation to the solution.png*/
 };
 
-// Function to generate playlist based on preferred genre
+
 function generatePlaylist(guardians, songs) 
 {
     // Use the map() function to create playlists for each Guardian
     // Your code here
-    
-    
-   
-    
-    
 
     //->Algoirthm Structure
     //Loop Through each guardian and get their genre
@@ -56,22 +51,26 @@ function generatePlaylist(guardians, songs)
                         console.log(artist,rockSongs);
                         
                         //UI Output
-                        let playlist = document.querySelector('#playlists');
-                        let playlistCard = document.createElement('ul');
-                        playlistCard.className = "playlist";
-                        playlistCard.innerHTML = `<h2>${artist}</h2>`;            
+                        let playlist = document.querySelector('#playlists'); //Playlist main container
+                        let playlistCard = document.createElement('ul'); //Playlist Area for each guardian
+                        playlistCard.className = "playlist";    //Add playlist class to the playlistCard - attaching css styling within our ul element.
+                        playlistCard.innerHTML = `<h2>${artist}'s Playlist</h2>`; //Guardians name and playlist.                
                         // -> Displaying the information as is on the solution.jpg
                         //->The logic comes here
                         rockSongs.forEach(song => 
                         {
-                            const li = document.createElement('li');
-                            li.classList = "song";
-                            li.textContent = `${song.title} by ${song.artist}`;
-                            playlistCard.append(li);    
+                            const li = document.createElement('li'); //Each song
+                            li.classList = "song"; //Class for each song
+
+                            const titleSpan = document.createElement('span'); //Song title
+                            titleSpan.classList.add("song-title"); //Add song title styling
+                            titleSpan.textContent = song.title; //write song title
+                            li.appendChild(titleSpan); //add to li(parent) element
+                            li.append(` by ${song.artist}`); //then proceed to add also the text "by song.artist" to parent li element
+                            playlistCard.append(li); //then add the li element to its parent element ul then thus creating the list     
                         });        
                         
-                        
-                        playlist.appendChild(playlistCard);
+                        playlist.appendChild(playlistCard); //then add the ul element to its parent/root element div. 
                         
                         
                     }
