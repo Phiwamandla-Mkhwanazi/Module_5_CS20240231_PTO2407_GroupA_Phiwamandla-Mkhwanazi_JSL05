@@ -34,7 +34,7 @@ const guardians =
     "Groot": "Pop", /*With relation to the solution.png*/
 };
 
-/*---Created a UI function to handle */
+/*---Created a UI function to handle DOM */
 function UI_Display(guardian, song)
 {
     //UI Output
@@ -64,17 +64,19 @@ function generatePlaylist(guardians, songs)
     // Use the map() function to create playlists for each Guardian
     // Your code here
 
-
+    //Loop through the guardians object to get each guardian and their preferred genre
+    //Used destructuring for better naming conventions
     for(const guardian in guardians)
     {
-        const genre = guardians[guardian];
+        const genre = guardians[guardian]; //Retrieve the current guardian's genre. 
             switch(genre)
             {
                 case "Rock" : 
                 {
+                    //-> Using Map() method to extract only the songs within that specified genre and apply filter method to remove all falsy values from the array.
                     const rockSongs = songs.map(song => song.genre === "Rock" ? { title: song.title, artist: song.artist } : null).filter(Boolean); 
-                    console.log(guardian,rockSongs);
-                    UI_Display(guardian, rockSongs);    
+                    console.log(guardian,rockSongs); //->Log to console for debugging purposes
+                    UI_Display(guardian, rockSongs); //->Get guardian name and mapped array songs to print to dom.
                 }
                 break;
                  
@@ -96,7 +98,7 @@ function generatePlaylist(guardians, songs)
 
                 default : 
                 {
-
+                    console.log(`The genre does not exist!`);
                 }
             }
     }
